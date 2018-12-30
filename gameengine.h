@@ -10,6 +10,7 @@ private:
     bool running;
     sf::RenderWindow window;
 
+    // TODO :: move these to separate class
     sf::Sprite sprBackground;
     sf::Sprite sprTree;
     sf::Sprite sprBee;

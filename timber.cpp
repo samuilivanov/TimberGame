@@ -3,6 +3,9 @@
 #include <time.h>
 #include <sstream>
 #include <cstdint>
+#include <iostream>
+
+#include "gameengine.h"
 
 void updateBranches(uint32_t seed);
 const int32_t NUM_BRANCHES = 6;
@@ -12,8 +15,46 @@ enum class side {
 };
 side branchPos[NUM_BRANCHES];
 
+//GameEngine:
+//* created and run inside the main()
+//* handles my scenes under a state pattern so I know which one to run, and whether I should switch to an other one
+//* handles the sf::RenderWindow and all the global SFML stuff
+//* the run() method contains the classic SFML pollEvent() loop
+
+//Scene:
+//* created/updated/displayed/destroyed by the GameEngine
+//* implements sf::Drawable according to a composite pattern (i.e. contains sub-sprites and other drawable elements)
+//* contains an OnUpdate(sf::Time elapsedTime) method to update the physics engine (if any) or any entity of the scene (charac animation, menu cursor blink, etc).
+//* Concrete implementations could be: TitleScene, SettingsMenuScene, WorldmapScene, Level1Scene, etc
+
+//GameEvent:
+//* Similar to sf::Event but with my own events
+//* Used along an observer pattern
+//* Example: TitleScene uses a GameEvent to notify its subscribers that the "New game" button has been pressed. GameEngine is notified and updates its state diagram accordingly.
+
+
+
 int main(void)
 {
+    GameEngine *game = new GameEngine();
+    uint32_t width = 1920;
+    uint32_t height = 1080;
+    if (!(game->init(width, height, true)))
+    {
+        std::cout << "Can not create window\n";
+    } else {
+        std::cout << "SFML initialized!\n";
+    }
+
+    while (game->isRunning()){
+        game->eventHandle();
+        game->draw();
+
+
+        game->display();
+    }
+
+    /*
     sf::SoundBuffer chopBuffer;
     chopBuffer.loadFromFile("assets/sound/chop.wav");
     sf::Sound chop;
@@ -29,8 +70,7 @@ int main(void)
     sf::Sound outOfTime;
     outOfTime.setBuffer(ootBuffer);
 
-    sf::VideoMode vm(1920, 1080);
-    sf::RenderWindow window(vm, "Timber!!!", sf::Style::Fullscreen);
+
     sf::Texture texBackground;
     sf::Texture texTree;
     sf::Texture texBee;
@@ -50,6 +90,7 @@ int main(void)
     sprCloud03.setTexture(texCloud);
     sf::Texture texPlayer;
     texPlayer.loadFromFile("assets/graphics/player.png");
+
     sf::Sprite sprPlayer;
     sprPlayer.setTexture(texPlayer);
     sprPlayer.setPosition(580, 720);
@@ -357,6 +398,8 @@ int main(void)
     return 0;
 }
 
+    */
+}
 void updateBranches(uint32_t seed)
 {
     for (size_t i = NUM_BRANCHES - 1; i > 0; --i) {
