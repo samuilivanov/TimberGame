@@ -2,24 +2,18 @@
 #define SCENE_H
 #include <SFML/Graphics.hpp>
 
+// This class will be virtual
+// It will contain
+// Sprites to create, textures to create, and update, draw,...
 class Scene
 {
 private:
-    sf::Sprite sprBackground;
-    sf::Sprite sprTree;
-    sf::Sprite sprBee;
-    sf::Sprite sprCloud01;
-    sf::Sprite sprCloud02;
-    sf::Sprite sprCloud03;
-    sf::Sprite sprPlayer;
-    sf::Texture texBackground;
-    sf::Texture texTree;
-    sf::Texture texBee;
-    sf::Texture texCloud;
-    sf::Texture texPlayer;
+    sf::Sprite sprite;
+    sf::Texture texure;
 public:
-    Scene();
-
+    virtual void init() = 0;
+    virtual void update() = 0;
+    virtual void draw() = 0;
 };
 
 #endif // SCENE_H

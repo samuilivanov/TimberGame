@@ -48,9 +48,8 @@ int main(void)
 
     while (game->isRunning()){
         game->eventHandle();
+        game->update();
         game->draw();
-
-
         game->display();
     }
 

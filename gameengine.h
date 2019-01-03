@@ -13,26 +13,20 @@ private:
     // TODO :: move these to separate class
     sf::Sprite sprBackground;
     sf::Sprite sprTree;
-    sf::Sprite sprBee;
-    sf::Sprite sprCloud01;
-    sf::Sprite sprCloud02;
-    sf::Sprite sprCloud03;
-
     sf::Sprite sprPlayer;
-
+    sf::Sprite sprbee;
     sf::Texture texBackground;
     sf::Texture texTree;
-    sf::Texture texBee;
-    sf::Texture texCloud;
-
     sf::Texture texPlayer;
 
 public:
+
     GameEngine();
     bool init(uint32_t width, uint32_t heigth, bool fullscreen);
     bool isRunning();
     void display();
     void eventHandle();
+    void update();
     void draw();
     void loadMedia();
 };
