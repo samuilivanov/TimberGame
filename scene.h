@@ -7,13 +7,13 @@
 // Sprites to create, textures to create, and update, draw,...
 class Scene
 {
-private:
+public:
     sf::Sprite sprite;
     sf::Texture texure;
-public:
+    virtual bool isActive() = 0;
     virtual void init() = 0;
     virtual void update() = 0;
-    virtual void draw() = 0;
+    virtual void draw(sf::RenderWindow &render) = 0;
 };
 
 #endif // SCENE_H

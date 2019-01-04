@@ -2,8 +2,9 @@
 #define TREE_H
 #include <SFML/Graphics.hpp>
 #include "texturemanager.h"
+#include "scene.h"
 
-class Tree
+class Tree : public Scene
 {
 private:
     sf::Texture texTree;
@@ -21,7 +22,10 @@ private:
 
 
 public:
-    Tree();
+    void init();
+    bool isActive();
+    void update();
+    void draw(sf::RenderWindow &render);
 };
 
 #endif // TREE_H

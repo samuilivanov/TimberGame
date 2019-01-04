@@ -15,7 +15,7 @@ sf::Texture TextureManager::loadTexture(std::string path)
     return tex;
 
 }
-void TextureManager::drawTexture(sf::RenderWindow *window, sf::Sprite &sprite)
+void TextureManager::drawTexture(sf::RenderWindow &window, sf::Sprite &sprite)
 {
-    window->draw(sprite);
+    window.draw(sprite);
 }

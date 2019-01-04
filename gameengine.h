@@ -8,16 +8,13 @@ class GameEngine
 {
 private:
     bool running;
-    sf::RenderWindow window;
-
     // TODO :: move these to separate class
     sf::Sprite sprBackground;
-    sf::Sprite sprTree;
-    sf::Sprite sprPlayer;
-    sf::Sprite sprbee;
     sf::Texture texBackground;
-    sf::Texture texTree;
-    sf::Texture texPlayer;
+    sf::RenderWindow window;
+    bool paused;
+    bool acceptInput;
+    uint32_t score;
 
 public:
 

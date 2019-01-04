@@ -1,21 +1,33 @@
 #include "clouds.h"
 
-Clouds::Clouds()
+void Clouds::init()
 {
-    texCloud = TextureManager::loadTexture("assets/graphics/cloud.png");
-    sprCloud01.setTexture(texCloud);
-    sprCloud02.setTexture(texCloud);
-    sprCloud03.setTexture(texCloud);
-    dt = clock.restart();
+    texure = TextureManager::loadTexture("assets/graphics/cloud.png");
+    sprCloud01.setTexture(texure);
+    sprCloud02.setTexture(texure);
+    sprCloud03.setTexture(texure);
+}
+
+bool Clouds::isActive()
+{
+    return cloud1Active;
+}
+
+void Clouds::draw(sf::RenderWindow &render)
+{
+    TextureManager::drawTexture(render, sprCloud01);
+    TextureManager::drawTexture(render, sprCloud02);
+    TextureManager::drawTexture(render, sprCloud03);
 }
 
 void Clouds::update()
 {
+    dt = clock.restart();
     if (!cloud1Active) {
         srand(static_cast<unsigned int>(time(nullptr) * 10));
         cloud1Speed = (rand() % 200);
         srand(static_cast<unsigned int>(time(nullptr) * 10));
-        float height = (rand() % 150);
+        height = (rand() % 150);
         sprCloud01.setPosition(-200, height);
         cloud1Active = true;
     } else {
@@ -31,7 +43,7 @@ void Clouds::update()
         srand(static_cast<unsigned int>(time(nullptr) * 20));
         cloud2Speed = (rand() % 200);
         srand(static_cast<unsigned int>(time(nullptr) * 20));
-        float height = (rand() % 300) - 150;
+        height = (rand() % 300) - 150;
         sprCloud02.setPosition(-200, height);
         cloud2Active = true;
     } else {
@@ -47,7 +59,7 @@ void Clouds::update()
         srand(static_cast<unsigned int>(time(nullptr) * 30));
         cloud3Speed = (rand() % 200);
         srand(static_cast<unsigned int>(time(nullptr) * 30));
-        float height = (rand() % 450) - 150;
+        height = (rand() % 450) - 150;
         sprCloud03.setPosition(-200, height);
         cloud3Active = true;
     } else {
@@ -58,5 +70,4 @@ void Clouds::update()
             cloud3Active = false;
         }
     }
-
 }

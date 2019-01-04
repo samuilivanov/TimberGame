@@ -18,10 +18,11 @@ SOURCES += \
     timber.cpp \
     gameengine.cpp \
     texturemanager.cpp \
-    scene.cpp \
     bee.cpp \
     clouds.cpp \
-    tree.cpp
+    tree.cpp \
+    player.cpp \
+    background.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -40,4 +41,6 @@ HEADERS += \
     scene.h \
     bee.h \
     clouds.h \
-    tree.h
+    tree.h \
+    player.h \
+    background.h

@@ -8,7 +8,7 @@ class TextureManager
 {
 public:
     static sf::Texture loadTexture(std::string path);
-    static void drawTexture(sf::RenderWindow *window, sf::Sprite &sprite);
+    static void drawTexture(sf::RenderWindow &window, sf::Sprite &sprite);
 };
 
 #endif // TEXTUREMANAGER_H
